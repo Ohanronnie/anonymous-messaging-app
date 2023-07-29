@@ -28,7 +28,7 @@ export default class Register {
         });
       const token = jwt.sign(
         {
-          username,
+          id: user._id,
           date: Date.now(),
         },
         process.env.SECRET_KEY!,

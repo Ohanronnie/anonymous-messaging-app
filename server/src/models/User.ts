@@ -23,6 +23,10 @@ const UserSchema = new Schema({
     required: true,
   },
   messages: [],
+  coverPath: {
+    type: String,
+    default: "/image/default.jpg",
+  },
 });
 UserSchema.pre<IMethod>("save", function (next) {
   if (this.isNew || this.isModified("password")) {

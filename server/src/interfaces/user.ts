@@ -5,8 +5,9 @@ export interface IUser {
     {
       message: string;
       time: number | Date;
-    }
+    },
   ];
+  coverPath: string;
 }
 export interface IMethod extends IUser {
   isNew: boolean;

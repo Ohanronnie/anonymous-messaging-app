@@ -3,6 +3,7 @@ interface IControl {
   path: string;
   method: string;
   controller: any;
+  middlewares?: any;
 }
 type IWare = any;
 export default class Router {
@@ -14,10 +15,18 @@ export default class Router {
   }
   private route(_route: IControl | IControl[]) {
     if (!Array.isArray(_route)) {
-      (this.router as any)[_route.method](_route.path, _route.controller);
+      if (_route.middlewares)
+        (this.router as any)[_route.method](
+          _route.path,
+          _route.middlewares,
+          _route.controller,
+        );
+      else (this.router as any)[_route.method](_route.path, _route.controller);
     } else {
       for (let i of _route) {
-        (this.router as any)[i.method](i.path, i.controller);
+        if (i.middlewares)
+          (this.router as any)[i.method](i.path, i.middlewares, i.controller);
+        else (this.router as any)[i.method](i.path, i.controller);
       }
     }
   }

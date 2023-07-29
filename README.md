@@ -114,7 +114,79 @@ Authorization: Bearer <token>
 - Status: 401 Unauthorized
 - Body: An error message indicating that the provided token is invalid or expired.
 
+## 5. Update Name - `/profile/update/name`
+
+### Method: POST
+
+### Content-Type: application/json
+
+**Description:** This endpoint allows users to update their username. To perform this action, a valid authorization token must be provided in the request headers, and the user needs to provide their current username, new name, and password in the request body.
+
+**Request:**
+
+```http
+POST /profile/update/name
+Content-Type: application/json
+Authorization: Bearer <token>
+
+{
+  "oldname": "current_username",
+  "newname": "new_name",
+  "password": "current_password"
+}
+```
+
+**Response:**
+
+- Status: 200 OK
+- Body: `null or success` (If the username is updated successfully)
+
+**Error Responses:**
+
+- Status: 401 Unauthorized
+- Body: An error message indicating that the provided token is invalid or expired or the error details.
+
+## 6. Update Profile Picture - `/profile/update/image`
+
+### Method: POST
+
+### Content-Type: multipart/form-data
+
+**Description:** This endpoint allows users to update their profile picture. The request must have a valid authorization token in the headers and the image file as a form data object in the body.
+
+**Request:**
+
+```http
+POST /profile/update/image
+Content-Type: multipart/form-data
+Authorization: Bearer <token>
+
+<form data object with image key>
+```
+
+OR
+
+```http
+POST /profile/update/image
+Content-Type: multipart/form-data
+Authorization: Bearer <token>
+
+<image binary data>
+```
+
+**Response:**
+
+- Status: 200 OK
+- Body: The URL of the updated profile picture.
+
+**Error Responses:**
+
+- Status: 401 Unauthorized
+- Body: An error message indicating that the provided token is invalid or expired.
+
 ---
+
+## Please make sure to use the appropriate method and content type when making requests to these additional endpoints. Ensure that you include the required authorization token in the headers for authorized access to protected routes. If you have any questions or need further assistance, feel free to reach out. Happy coding!
 
 ## Environment Variables
 

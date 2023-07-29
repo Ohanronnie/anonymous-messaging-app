@@ -13,7 +13,7 @@ export default class App {
   private app;
   private port: number;
   constructor(
-    public appInt: { middlewares: any; port: number; routes: IRoute[] }
+    public appInt: { middlewares: any; port: number; routes: IRoute[] },
   ) {
     this.app = express();
     this.middlewares(appInt.middlewares);
